@@ -20,8 +20,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxml2-dev libxslt1-dev \
     # Misc dependencies
     liblzma-dev libyaml-dev libffi-dev \
-    # uWSGI features
-    libpcre3-dev \
     # Clean up
     && apt-get autoremove\
     && apt-get clean\
