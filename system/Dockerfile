@@ -36,3 +36,6 @@ RUN git clone https://github.com/ImageOptim/libimagequant \
     && cd .. \
     && rm -fr libimagequant \
     && ldconfig
+
+# Upgrade to latest pip version
+RUN pip install -U pip
