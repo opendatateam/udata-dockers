@@ -38,4 +38,4 @@ RUN git clone https://github.com/ImageOptim/libimagequant \
     && ldconfig
 
 # Upgrade to latest pip version
-RUN pip install -U pip
+RUN pip install -U pip setuptools six
