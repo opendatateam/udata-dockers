@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Docker (required for extra repository)
     apt-transport-https ca-certificates gnupg2 software-properties-common \
 # CircleCI requirements
-    openssh-client openssh-server gzip
+    openssh-client openssh-server gzip \
 # Clean up
     && apt-get autoremove\
     && apt-get clean\
