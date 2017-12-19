@@ -50,3 +50,9 @@ RUN git clone https://github.com/ImageOptim/libimagequant \
 
 # Upgrade to latest pip version
 RUN pip install -U pip setuptools six
+
+# Install dockerize (https://github.com/jwilder/dockerize)
+ENV DOCKERIZE_VERSION v0.6.0
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
