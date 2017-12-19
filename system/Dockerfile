@@ -2,7 +2,7 @@
 # Dockerfile for udata system dependencies #
 ############################################
 
-FROM debian:jessie-slim
+FROM debian:stretch-slim
 
 # File Author / Maintainer
 MAINTAINER Open Data Team
@@ -18,8 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Python tools
     python python-dev python-pip\
 # Pillow
-    libjpeg-dev zlib1g-dev libpng12-dev libtiff5-dev libfreetype6-dev \
-    liblcms2-dev libopenjpeg-dev libwebp-dev libpng12-dev \
+    libjpeg-dev zlib1g-dev libpng-dev libtiff5-dev libfreetype6-dev \
+    liblcms2-dev libopenjp2-7-dev libwebp-dev \
 # lxml dependencies
     libxml2-dev libxslt1-dev \
 # Misc dependencies
@@ -37,7 +37,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
 ENV LC_ALL en_US.UTF-8
 
 # Install libpngquant for better images quantization
-ENV LIBIMAGEQUANT_VERSION 2.10.2
+ENV LIBIMAGEQUANT_VERSION 2.11.4
 RUN git clone https://github.com/ImageOptim/libimagequant \
     && cd libimagequant \
     && git checkout $LIBIMAGEQUANT_VERSION \
