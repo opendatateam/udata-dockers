@@ -35,6 +35,9 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && dpkg-reconfigure locales \
     && /usr/sbin/update-locale LANG=en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV PYTHONIOENCODING UTF-8
 
 # Install libpngquant for better images quantization
 ENV LIBIMAGEQUANT_VERSION 2.11.4
