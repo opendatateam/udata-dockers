@@ -29,7 +29,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Python 3.6
-WORKDIR /tmp
 RUN /bin/bash -c "wget --no-check-certificate \
     https://github.com/chriskuehl/python3.6-debian-stretch/releases/download/v3.6.3-1-deb9u1/{python3.6_3.6.3-1.deb9u1_amd64,python3.6-minimal_3.6.3-1.deb9u1_amd64,python3.6-dev_3.6.3-1.deb9u1_amd64,libpython3.6_3.6.3-1.deb9u1_amd64,libpython3.6-minimal_3.6.3-1.deb9u1_amd64,libpython3.6-stdlib_3.6.3-1.deb9u1_amd64,libpython3.6-dev_3.6.3-1.deb9u1_amd64}.deb" \
     && dpkg -i *.deb \
@@ -47,7 +46,7 @@ ENV PYTHONIOENCODING UTF-8
 
 # Install libpngquant for better images quantization
 ENV LIBIMAGEQUANT_VERSION 2.11.4
-RUN git clone https://github.com/ImageOptim/libimagequant \
+RUN GIT_SSL_NO_VERIFY=true git clone https://github.com/ImageOptim/libimagequant \
     && cd libimagequant \
     && git checkout $LIBIMAGEQUANT_VERSION \
     && make shared\
@@ -58,4 +57,6 @@ RUN git clone https://github.com/ImageOptim/libimagequant \
     && ldconfig
 
 # Upgrade to latest pip version
+RUN curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python3.6 get-pip.py
 RUN pip3 install -U pip setuptools six
