@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Locales management
     locales \
 # Python tools
-    python python-dev python-pip\
+    python3 python3-dev python3-pip\
 # Pillow
     libjpeg-dev zlib1g-dev libpng-dev libtiff5-dev libfreetype6-dev \
     liblcms2-dev libopenjp2-7-dev libwebp-dev \
@@ -52,4 +52,4 @@ RUN git clone https://github.com/ImageOptim/libimagequant \
     && ldconfig
 
 # Upgrade to latest pip version
-RUN pip install -U pip setuptools six
+RUN pip3 install -U pip setuptools six

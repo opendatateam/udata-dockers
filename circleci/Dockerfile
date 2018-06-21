@@ -29,9 +29,6 @@ RUN echo '\n# Failsafe NVM activation\nset +e' >> /root/.bashrc
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh | bash
 RUN echo '\nset -e' >> /root/.bashrc
 
-# Upgrade to latest virtualenv version
-RUN pip install -U virtualenv
-
 # Install dockerize (https://github.com/jwilder/dockerize)
 ENV DOCKERIZE_VERSION v0.6.0
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
