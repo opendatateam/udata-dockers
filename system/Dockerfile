@@ -2,7 +2,7 @@
 # Dockerfile for udata system dependencies #
 ############################################
 
-FROM debian:buster-slim
+FROM debian:stretch-slim
 
 # File Author / Maintainer
 MAINTAINER Open Data Team
@@ -15,19 +15,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tar git wget curl build-essential pkg-config \
 # Locales management
     locales \
-# Python tools
-    python3 python3-dev python3-pip python3-venv\
 # Pillow
     libjpeg-dev zlib1g-dev libpng-dev libtiff5-dev libfreetype6-dev \
     liblcms2-dev libopenjp2-7-dev libwebp-dev \
 # lxml dependencies
     libxml2-dev libxslt1-dev \
 # Misc dependencies
-    liblzma-dev libyaml-dev libffi-dev \
+    liblzma-dev libyaml-dev libffi-dev libexpat1-dev libssl1.1 mime-support \
+    libmpdec2 libreadline7 libsqlite3-0 \
 # Clean up
     && apt-get autoremove\
     && apt-get clean\
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Python 3.6
+WORKDIR /tmp
+RUN /bin/bash -c "wget --no-check-certificate \
+    https://github.com/chriskuehl/python3.6-debian-stretch/releases/download/v3.6.3-1-deb9u1/{python3.6_3.6.3-1.deb9u1_amd64,python3.6-minimal_3.6.3-1.deb9u1_amd64,python3.6-dev_3.6.3-1.deb9u1_amd64,libpython3.6_3.6.3-1.deb9u1_amd64,libpython3.6-minimal_3.6.3-1.deb9u1_amd64,libpython3.6-stdlib_3.6.3-1.deb9u1_amd64,libpython3.6-dev_3.6.3-1.deb9u1_amd64}.deb" \
+    && dpkg -i *.deb \
+    && rm *.deb
 
 # Set LOCALE to UTF8
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
