@@ -2,7 +2,7 @@
 # Dockerfile for udata system dependencies #
 ############################################
 
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 # File Author / Maintainer
 MAINTAINER Open Data Team
