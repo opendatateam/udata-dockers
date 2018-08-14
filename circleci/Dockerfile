@@ -2,23 +2,29 @@
 # Dockerfile for udata builds on CircleCI 2.0 #
 ###############################################
 
-FROM udata/system:py3
+FROM udata/system:2-alpine
 
-# File Author / Maintainer
-MAINTAINER Open Data Team
+# Optionnal build arguments
+ARG REVISION="N/A"
+ARG CREATED="Undefined"
+
+# OCI annotations
+# See: https://github.com/opencontainers/image-spec/blob/master/annotations.md
+LABEL "org.opencontainers.image.title"="udata CircleCI"
+LABEL "org.opencontainers.image.description"="udata build environment for CircleCI 2.0"
+LABEL "org.opencontainers.image.authors"="Open Data Team"
+LABEL "org.opencontainers.image.sources"="https://github.com/opendatateam/udata-dockers/tree/master/circleci"
+LABEL "org.opencontainers.image.revision"=$REVISION
+LABEL "org.opencontainers.image.created"=$CREATED
 
 # Install docker system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
 # CircleCI requirements
-    bash openssh-client openssh-server gzip ca-certificates \
+    gzip openssh-client openssh-server \
 # PhantomJS requirements
-    libfontconfig1-dev \
+    fontconfig-dev \
 # Other tools
-    jq \
-# Clean up
-    && apt-get autoremove\
-    && apt-get clean\
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    jq dockerize@testing
 
 COPY .bashrc /root/
 
@@ -31,9 +37,3 @@ RUN echo '\nset -e' >> /root/.bashrc
 
 # Upgrade to latest virtualenv version
 RUN pip3 install -U virtualenv
-
-# Install dockerize (https://github.com/jwilder/dockerize)
-ENV DOCKERIZE_VERSION v0.6.0
-RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
