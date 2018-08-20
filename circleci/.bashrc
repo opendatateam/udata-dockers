@@ -20,18 +20,18 @@ base_branch() {
 }
 
 # Upload dist whell to github release matching current tag
-gh_release() {
-    path=$(set -- dist/*.whl; echo "$1")
-    filename=$(basename $path)
-    RELEASE_URL="https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/releases/tags/$CIRCLE_TAG"
-    RELEASE_DATA=$(curl -fsSL $RELEASE_URL)
-    RELEASE_PAGE_URL=$(jq -r '.html_url' <<< $RELEASE_DATA)
-    UPLOAD_URL=$(jq -r '.upload_url' <<< $RELEASE_DATA)
-    UPLOAD_URL="$(sed 's/{.*}/?name=/' <<< $UPLOAD_URL)$filename"
-    curl --request POST \
-    --data-binary @$path \
-    --header "Authorization: token $GITHUB_OAUTH_TOKEN" \
-    --header "Content-Type: application/zip" \
-    $UPLOAD_URL
-    echo "Wheel upload to release $RELEASE_PAGE_URL"
-}
+# gh_release() {
+#     path=$(set -- dist/*.whl; echo "$1")
+#     filename=$(basename $path)
+#     RELEASE_URL="https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/releases/tags/$CIRCLE_TAG"
+#     RELEASE_DATA=$(curl -fsSL $RELEASE_URL)
+#     RELEASE_PAGE_URL=$(jq -r '.html_url' <<< $RELEASE_DATA)
+#     UPLOAD_URL=$(jq -r '.upload_url' <<< $RELEASE_DATA)
+#     UPLOAD_URL="$(sed 's/{.*}/?name=/' <<< $UPLOAD_URL)$filename"
+#     curl --request POST \
+#     --data-binary @$path \
+#     --header "Authorization: token $GITHUB_OAUTH_TOKEN" \
+#     --header "Content-Type: application/zip" \
+#     $UPLOAD_URL
+#     echo "Wheel upload to release $RELEASE_PAGE_URL"
+# }
