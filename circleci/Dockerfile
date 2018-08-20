@@ -20,7 +20,7 @@ LABEL "org.opencontainers.image.created"=$CREATED
 # Install docker system dependencies
 RUN apk add --no-cache \
 # CircleCI requirements
-    gzip openssh-client openssh-server \
+    git gzip openssh-client openssh-server \
 # PhantomJS requirements
     fontconfig-dev \
 # Other tools
@@ -38,4 +38,4 @@ COPY .bashrc /root/
 # RUN echo -e '\nset -e' >> /root/.bashrc
 
 # Upgrade to latest virtualenv version
-RUN pip3 install -U virtualenv
+# RUN pip3 install -U virtualenv
