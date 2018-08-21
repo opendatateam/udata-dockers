@@ -21,21 +21,7 @@ LABEL "org.opencontainers.image.created"=$CREATED
 RUN apk add --no-cache \
 # CircleCI requirements
     git gzip openssh-client openssh-server \
-# PhantomJS requirements
-    fontconfig-dev \
 # Other tools
     jq dockerize@testing
 
 COPY .bashrc /root/
-
-# ENV NVM_DIR /root/.nvm
-# ENV NVM_VERSION 0.33.11
-# RUN mkdir /root/.nvm
-
-# NVM is failing with -e option
-# RUN echo -e '\n# Failsafe NVM activation\nset +e' >> /root/.bashrc
-# RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh | bash
-# RUN echo -e '\nset -e' >> /root/.bashrc
-
-# Upgrade to latest virtualenv version
-# RUN pip3 install -U virtualenv
