@@ -2,7 +2,7 @@
 # Dockerfile for udata system dependencies #
 ############################################
 
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 # Optionnal build arguments
 ARG REVISION="N/A"
@@ -11,9 +11,9 @@ ARG CREATED="Undefined"
 # OCI annotations
 # See: https://github.com/opencontainers/image-spec/blob/master/annotations.md
 LABEL "org.opencontainers.image.title"="udata system"
-LABEL "org.opencontainers.image.description"="Base system dependencies for udata"
+LABEL "org.opencontainers.image.description"="Base system dependencies for udata 2"
 LABEL "org.opencontainers.image.authors"="Open Data Team"
-LABEL "org.opencontainers.image.sources"="https://github.com/opendatateam/udata-dockers/tree/master/system"
+LABEL "org.opencontainers.image.sources"="https://github.com/opendatateam/udata-dockers/tree/2-alpine/system"
 LABEL "org.opencontainers.image.revision"=$REVISION
 LABEL "org.opencontainers.image.created"=$CREATED
 

@@ -13,7 +13,7 @@ ARG CREATED="Undefined"
 LABEL "org.opencontainers.image.title"="udata CircleCI"
 LABEL "org.opencontainers.image.description"="udata build environment for CircleCI 2.0"
 LABEL "org.opencontainers.image.authors"="Open Data Team"
-LABEL "org.opencontainers.image.sources"="https://github.com/opendatateam/udata-dockers/tree/master/circleci"
+LABEL "org.opencontainers.image.sources"="https://github.com/opendatateam/udata-dockers/tree/2-alpine/circleci"
 LABEL "org.opencontainers.image.revision"=$REVISION
 LABEL "org.opencontainers.image.created"=$CREATED
 
