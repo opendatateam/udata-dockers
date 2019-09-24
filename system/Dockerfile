@@ -40,5 +40,5 @@ RUN apk add --update --no-cache \
     tiff-dev \
     yaml-dev \
     zlib-dev \
-    && pip3 install --upgrade pip setuptools \
+    && pip install --upgrade pip setuptools virtualenv \
     && rm -r /root/.cache
