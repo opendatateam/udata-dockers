@@ -2,7 +2,7 @@
 # Dockerfile for udata system dependencies #
 ############################################
 
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 # Optionnal build arguments
 ARG REVISION="N/A"
