@@ -2,7 +2,7 @@
 # Dockerfile for udata system dependencies #
 ############################################
 
-FROM python:3.7-slim-buster
+FROM python:3.10-slim-buster
 
 # File Author / Maintainer
 MAINTAINER Open Data Team

@@ -2,7 +2,7 @@
 # Dockerfile for udata builds on CircleCI 2.0 #
 ###############################################
 
-FROM udata/system
+FROM udata/system:3.10
 
 # File Author / Maintainer
 MAINTAINER Open Data Team
